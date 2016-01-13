@@ -1,0 +1,40 @@
+<dt id="database-import">
+    <a href="{{page.uri}}#index">^</a> <a>Database import/export</a>
+</dt>
+
+<dd>
+Create the database dump locally:
+<br />
+<br />
+<code>you@yourpc$ drush sql-dump >/local/path/dump.sql</code>
+<br />
+<br />
+Upload the database dump to the TSAdm server:
+<br />
+<br />
+<code>you@yourpc$ rsync -axv -e 'ssh -l {{user.name}} -p 28128' /local/path/dump.sql tsadm.tincan.co.uk:dump.sql</code>
+<br />
+<br />
+Now login to TSAdm server:
+<br />
+<br />
+<code>you@yourpc$ ssh -A -l {{user.name}} -p 28128 tsadm.tincan.co.uk</code>
+<br />
+<br />
+And once there you can use drush to import the database. First check you are running commands against correct site/env:
+<br />
+<br />
+<code>{{user.name}}@tsadm$ drush @{{site.name}}.{{site.env.name}} st</code>
+<br />
+<br />
+Import database dump:
+<br />
+<br />
+<code>{{user.name}}@tsadm$ drush @{{site.name}}.{{site.env.name}} sql-cli &lt;~/dump.sql</code>
+<br />
+<br />
+Check site's status after database import:
+<br />
+<br />
+<code>{{user.name}}@tsadm$ drush @{{site.name}}.{{site.env.name}} st</code>
+</dd>

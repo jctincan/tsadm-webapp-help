@@ -1,0 +1,19 @@
+<dt id="files-upload"><a href="{{page.uri}}#index">^</a> <a>Files upload/download</a></dt>
+<dd>
+Upload files to TSAdm server:
+<br />
+<br />
+<code>you@yourpc$ rsync -axv -e 'ssh -l {{user.name}} -p 28128' /local/path/source/dir/ tsadm.tincan.co.uk:upload-path/</code>
+<br />
+<br />
+Now login to TSAdm server:
+<br />
+<br />
+<code>you@yourpc$ ssh -A -l {{user.name}} -p 28128 tsadm.tincan.co.uk</code>
+<br />
+<br />
+And then you can sync to the site's environment:
+<br />
+<br />
+<code>{{user.name}}@tsadm$ rsync -axv ~/upload-path/files/ {{site.env.host}}::tsadm.sites/{{site.name}}/{{site.env.name}}/docroot/sites/default/files/</code>
+</dd>

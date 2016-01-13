@@ -1,0 +1,19 @@
+<dt id="drupal-settings">
+  <a href="{{page.uri}}#index">^</a> <a>Drupal settings</a>
+</dt>
+
+<dd>To integrate a Drupal site with TSAdm tool you will have to add the following lines to the site's <code>settings.php</code> file:<br />
+<br />
+<pre class="code">if (is_readable('/home/tsadm/drupal.settings.php'))
+{
+    $tsadm_referrer = __FILE__;
+    # If this is a Drupal multisite installation and if it's NOT the
+    # default site, we need to hardcode the site's name here, so
+    # comment out the next line (remove the # character) if that's the case.
+    #$tsadm_site_name = "{{site.name}}";
+    require('/home/tsadm/drupal.settings.php');
+}</pre>
+<br />
+That will tell Drupal which database to use, its user and password. Among other things.<br />
+Note that because of the gitignore file, settings.php will be ignored, so you will have to force it using add -f /path/to/file/settings.php
+</dd>

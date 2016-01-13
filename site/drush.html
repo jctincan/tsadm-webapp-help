@@ -1,0 +1,24 @@
+<dt id="drush">
+    <a href="{{page.uri}}#index">^</a> <a>Drush</a>
+</dt>
+
+<dd>To run Drush commands you have first to login to TSAdm server via SSH:
+<br />
+<br />
+<code>you@yourpc$ ssh -A -l {{user.name}} -p 28128 tsadm.tincan.co.uk</code>
+<br />
+<br />
+Once there you can just run drush commands using drush aliases feature to reference each site's environment:
+<br />
+<br />
+<code>{{user.name}}@tsadm$ drush @{{site.name}}.{{site.env.name}} &lt;drush-command&gt;</code>
+<br />
+<br />
+Drush commands are ran remotely on the server where the site is hosted. So created files, like those from drush archive-dump in example, are created in the live server. If you need to access the live server, you can do the following:
+<br />
+<br />
+<code>{{user.name}}@tsadm$ ssh {{site.name}}.{{site.env.name}}</code>
+<br />
+<br />
+You can run drush commands using the aliases like the example above too. But <b>be careful</b> please, you are in the live server, so try to prefer working from tsadm server instead of from it.
+</dd>
